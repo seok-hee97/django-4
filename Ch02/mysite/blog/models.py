@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.urls import reverse
+
+from django.urls import reverse     # for Using canonical URLs for models
 
 
 class PublishedManager(models.Manager):
@@ -42,6 +43,13 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
+    """
+    reverse() function will build the URL
+    dynamically using the URL name defined in the URL
+    
+    post 
+    """
     def get_absolute_url(self):
         return reverse('blog:post_detail',
                        args=[self.publish.year,
